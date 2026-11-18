@@ -210,6 +210,7 @@ footer{max-width:1120px;margin:0 auto;padding:20px 16px 40px;color:var(--muted);
   <div class="row" style="flex-wrap:wrap;gap:8px;margin:10px 0 14px">
     <button class="btn" type="button" id="rv-load">Load my 71 PDF answers into the quiz</button>
     <button class="btn ghost" type="button" data-drill="circ" data-rev="1" data-missed="1">Retry my 2 misses</button>
+    <button class="btn ghost" type="button" data-drill="circ,endo,dig,exc,rep" data-warm="1">Do the 6-question warm-up</button>
     <button class="btn ghost" type="button" data-drill="endo,dig,exc,rep" data-rev="1">Start the 45 I haven’t answered</button>
   </div>
   <p class="small" id="rv-status" aria-live="polite"></p>
@@ -273,7 +274,7 @@ footer{max-width:1120px;margin:0 auto;padding:20px 16px 40px;color:var(--muted);
     <div class="card"><h4><a href="#l-exc">Excretory (10)</a></h4><ul><li>Ammonia vs urea vs uric acid: toxicity and water cost.</li><li>Filtration (glomerulus) vs reabsorption (tubule → blood) vs secretion (blood → tubule).</li><li>Ascending limb: pumps salt, impermeable to water.</li><li>ADH = water in collecting duct (lack → diabetes insipidus); RAAS ↑ volume and BP; protein in urine = leaky glomerulus.</li></ul></div>
     <div class="card"><h4><a href="#l-rep">Reproductive (10)</a></h4><ul><li>Uterine layers: endometrium (shed) vs myometrium (contracts in labour).</li><li>Corpus luteum → corpus albicans if no pregnancy.</li><li>Prolactin = milk <b>production</b>; oxytocin = milk <b>ejection</b>.</li><li>Fertilization in the ampulla; implantation in the endometrium; spermatogenesis order.</li></ul></div>
   </div>
-  <div class="why"><b>A review loop that works:</b> (1) Load your PDF answers, then “Retry my 2 misses” until both feel automatic. (2) For each untouched system, read its section once, then do its sample questions with the reviewer filter on. (3) Close each session with “Retry missed only”, then a timed station run on the Quiz tab for the tissue IDs.</div>
+  <div class="why"><b>A review loop that works:</b> (1) Load your PDF answers, then “Retry my 2 misses” until both feel automatic, then do the 6-question warm-up (two checks on the misses, one concept from each system you haven’t started). (2) For each untouched system, read its section once, then do its sample questions with the reviewer filter on. (3) Close each session with “Retry missed only”, then a timed station run on the Quiz tab for the tissue IDs.</div>
 </section>
 
 
@@ -3181,6 +3182,16 @@ QUIZ.push(
  {s:'circ',t:'order',q:'Order the cardiac cycle starting with atrial systole.',items:['Atrial systole: atria contract, ventricles relax and fill','AV valves close (S1 “lub”)','Ventricular systole: semilunar valves open, blood ejected','Semilunar valves close (S2 “dub”)','Complete diastole: AV valves open, passive filling'],e:'Atria and ventricles take turns; most filling is passive, atrial systole gives the final top-up.'},
  {s:'circ',t:'mc',q:'Where does MOST ventricular filling happen at rest?',o:['During atrial systole','Passively during diastole, before the atria contract','During ventricular systole','Only during exercise'],a:1,e:'Atrial systole adds only the last portion (textbooks often cite roughly 20%), which is why people with atrial fibrillation can still circulate blood.'}
 );
+
+// Warm-up set given in chat (18 Nov): two checks on the circulatory misses + one per unstarted system.
+QUIZ.push(
+ {s:'circ',t:'mc',warm:1,q:'Blood leaves a capillary bed in the leg. What is the next vessel it enters?',o:['Arteriole','Venule','Vein','Artery'],a:1,e:'Warm-up. Capillaries drain into venules, which merge into veins: artery → arteriole → capillary → venule → vein.'},
+ {s:'circ',t:'mc',warm:1,q:'At the moment you hear S2 (“dub”), what is happening?',o:['AV valves close as the ventricles start contracting','Semilunar valves close as the ventricles relax','The atria contract','The SA node fires'],a:1,e:'Warm-up. Ventricles relax after ejecting; arterial blood starts back and snaps the semilunar valves shut. Atrial pressure never acts on them.'},
+ {s:'endo',t:'mc',warm:1,q:'Cortisol is a steroid. Where is its receptor, and why?',o:['On the cell surface, because it is water-soluble','Inside the cell, because it is lipid-soluble and crosses the membrane','On the nucleus only, because it is a peptide','In the blood, because it never enters cells'],a:1,e:'Warm-up. Steroids cross the lipid bilayer and change gene expression; peptides use surface receptors and cAMP.'},
+ {s:'dig',t:'mc',warm:1,q:'A patient has had their gallbladder removed. Which statement is true?',o:['They can no longer make bile','The liver still makes bile; it just isn’t stored and concentrated','They can no longer digest protein','Lipase is no longer secreted'],a:1,e:'Warm-up. Liver makes bile, gallbladder stores it. Bile emulsifies; pancreatic lipase digests.'},
+ {s:'exc',t:'mc',warm:1,q:'After a long hike without water, which change in the kidney is expected?',o:['Less ADH, so more dilute urine','More ADH, so the collecting duct reabsorbs more water','More ANP, so more salt is lost','The glomerulus stops filtering'],a:1,e:'Warm-up. Dehydration → more ADH → water channels in the collecting duct → small volume of concentrated urine.'},
+ {s:'rep',t:'mc',warm:1,q:'Which hormone pair is correctly matched to its milk job?',o:['Oxytocin: production · Prolactin: ejection','Prolactin: production · Oxytocin: ejection','Both make milk','Estrogen: ejection · LH: production'],a:1,e:'Warm-up. PROlactin PROduces; oxytocin ejects (myoepithelial cells) and drives labour.'}
+);
 MIXUPS.push(
  ['Osteoblast','Osteoclast','Builds bone (secretes osteoid).','Breaks down bone (multinucleated).','Blasts build, clasts carve.'],
  ['Intramembranous','Endochondral','Directly from mesenchyme; flat skull bones.','Replaces a hyaline cartilage model; long bones.','Endo-CHONDRAL = cartilage first.'],
@@ -4860,7 +4871,8 @@ function quizInit(){
     $$('#q-secs button').forEach(c=>c.setAttribute('aria-pressed', want.includes(c.dataset.s)));
     Q.rev = !!b.dataset.rev; $('#q-rev').setAttribute('aria-pressed', Q.rev);
     Q.mode = b.dataset.missed ? 'missed' : 'practice'; $('#q-missed').setAttribute('aria-pressed', Q.mode==='missed');
-    if (!b.dataset.missed) { Q.list = filtered().filter(q=>!Q.ans[q.id]); } else { Q.mode='practice'; $('#q-missed').setAttribute('aria-pressed', false); Q.list = ALL.filter(q=>want.includes(q.s) && (!Q.rev||q.rev) && Q.ans[q.id] && !Q.ans[q.id].ok); Q.list.forEach(q=>delete Q.ans[q.id]); store.set('ans',Q.ans); }
+    if (b.dataset.warm) { Q.rev=false; $('#q-rev').setAttribute('aria-pressed', false); Q.list = ALL.filter(q=>q.warm); Q.list.forEach(q=>delete Q.ans[q.id]); store.set('ans',Q.ans); }
+    else if (!b.dataset.missed) { Q.list = filtered().filter(q=>!Q.ans[q.id]); } else { Q.mode='practice'; $('#q-missed').setAttribute('aria-pressed', false); Q.list = ALL.filter(q=>want.includes(q.s) && (!Q.rev||q.rev) && Q.ans[q.id] && !Q.ans[q.id].ok); Q.list.forEach(q=>delete Q.ans[q.id]); store.set('ans',Q.ans); }
     Q.i=0; qShow(); qMap(); qScore();
     location.hash = '#quiz'; }));
   $('#q-missed').addEventListener('click', e=>{ Q.mode = Q.mode==='missed' ? 'practice' : 'missed'; e.currentTarget.setAttribute('aria-pressed', Q.mode==='missed'); qBuild(false); });
