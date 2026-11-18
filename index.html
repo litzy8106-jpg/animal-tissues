@@ -201,8 +201,81 @@ footer{max-width:1120px;margin:0 auto;padding:20px 16px 40px;color:var(--muted);
 </div>
 
 <nav class="subnav" aria-label="Learn sections">
-  <a href="#l-map">Big picture</a><a href="#l-epi">Epithelial</a><a href="#l-ct">Connective</a><a href="#l-mus">Muscle</a><a href="#l-nerve">Nervous</a><a href="#l-ns">Nervous system</a><a href="#l-skin">Integumentary</a><a href="#l-dig">Digestive</a><a href="#l-resp">Respiratory</a><a href="#l-circ">Circulatory</a><a href="#l-exc">Excretory</a><a href="#l-rep">Reproductive</a><a href="#l-skel">Skeletal</a><a href="#l-musc">Muscular</a><a href="#l-imm">Immune</a><a href="#l-endo">Endocrine</a><a href="#l-3d">3D models</a><a href="#l-flags">Slide vs textbook</a>
+  <a href="#l-map">Big picture</a><a href="#l-epi">Epithelial</a><a href="#l-ct">Connective</a><a href="#l-mus">Muscle</a><a href="#l-nerve">Nervous</a><a href="#l-ns">Nervous system</a><a href="#l-review"><b>My review</b></a><a href="#l-skin">Integumentary</a><a href="#l-dig">Digestive</a><a href="#l-resp">Respiratory</a><a href="#l-circ">Circulatory</a><a href="#l-exc">Excretory</a><a href="#l-rep">Reproductive</a><a href="#l-skel">Skeletal</a><a href="#l-musc">Muscular</a><a href="#l-imm">Immune</a><a href="#l-endo">Endocrine</a><a href="#l-3d">3D models</a><a href="#l-flags">Slide vs textbook</a>
 </nav>
+
+<section id="l-review" aria-labelledby="h-review">
+  <h2 id="h-review">Your 3rd-exam review: where you stand</h2>
+  <p>From the answers you highlighted in <i>REVIEWER_3RD_EXAM-2.pdf</i>: you answered <b>71 of the 116</b> sample questions and got <b>69 right (97%)</b>. Both misses are in the circulatory system, and both test the same skill: following blood <b>in order</b>. Four systems are still untouched.</p>
+  <div class="row" style="flex-wrap:wrap;gap:8px;margin:10px 0 14px">
+    <button class="btn" type="button" id="rv-load">Load my 71 PDF answers into the quiz</button>
+    <button class="btn ghost" type="button" data-drill="circ" data-rev="1" data-missed="1">Retry my 2 misses</button>
+    <button class="btn ghost" type="button" data-drill="endo,dig,exc,rep" data-rev="1">Start the 45 I haven’t answered</button>
+  </div>
+  <p class="small" id="rv-status" aria-live="polite"></p>
+  <div class="tablewrap"><table>
+    <tr><th>System</th><th>Your score</th><th>Status</th></tr>
+    <tr><td>Integumentary</td><td>10 / 10</td><td>✓ Solid</td></tr>
+    <tr><td>Skeletal</td><td>10 / 10</td><td>✓ Solid</td></tr>
+    <tr><td>Muscular</td><td>10 / 10</td><td>✓ Solid</td></tr>
+    <tr><td>Respiratory</td><td>8 / 8</td><td>✓ Solid</td></tr>
+    <tr><td><b>Circulatory</b></td><td><b>6 / 8</b></td><td>Review: vessel order, cardiac cycle (below)</td></tr>
+    <tr><td>Immune</td><td>15 / 15</td><td>✓ Solid</td></tr>
+    <tr><td>Nervous</td><td>10 / 10</td><td>✓ Solid</td></tr>
+    <tr><td>Endocrine · Digestive · Excretory · Reproductive</td><td>0 / 45 attempted</td><td><b>Not started</b>: read the section, then drill</td></tr>
+  </table></div>
+
+  <h3>Miss 1: the order of blood vessels</h3>
+  <p>You picked <b>Arteriole → artery → capillary → vein → venule</b>. The answer is <b>Artery → arteriole → capillary → venule → vein</b>.</p>
+  <div class="wwy">
+    <div><b class="lab">What</b>A closed loop of vessels that branch smaller and smaller on the way out, then merge bigger and bigger on the way back.</div>
+    <div><b class="lab">How</b>Picture a river delta and its tributaries. The aorta (one trunk) splits into <b>arteries</b>, which split into <b>arterioles</b>, which split into millions of <b>capillaries</b>. Capillaries rejoin into <b>venules</b>, which join into <b>veins</b>, which return to the venae cavae.</div>
+    <div><b class="lab">Why</b>Pressure has to drop in steps. Arteries carry the full pressure pulse; arterioles (muscular “taps”) drop it and decide how much blood each capillary bed gets; capillaries are thin enough to exchange; the low-pressure return needs bigger, thinner vessels with valves.</div>
+  </div>
+  <div class="why"><b>Spot the trap:</b> the wrong options keep the right words but swap one pair. Check two rules. (1) It is <b>symmetric</b>: size goes big → small → smallest → small → big. (2) The “-ole/-ule” vessel always sits <b>next to the capillary</b>, because it is the small branch that feeds or drains it. In “arteriole → artery” the small branch comes first, so the rule is broken.</div>
+
+  <h3>Miss 2: what the ventricles do during atrial systole</h3>
+  <p>You picked <b>“They close the semilunar valves by increasing pressure.”</b> The answer is <b>“They relax and receive additional blood from the atria.”</b></p>
+  <figure class="fig" style="max-width:760px">
+    <svg viewBox="0 0 760 230" role="img" aria-labelledby="cc-t cc-d" style="width:100%;height:auto">
+      <title id="cc-t">Cardiac cycle timeline</title><desc id="cc-d">Over 0.8 seconds the atria contract for about 0.1 s while the ventricles are relaxed; then the ventricles contract for about 0.3 s while the atria relax; then everything relaxes. AV valves are open while the ventricles fill and shut at the first heart sound; semilunar valves are open only during ventricular ejection and shut at the second heart sound.</desc>
+      <style>.cc-l{font:600 12px system-ui,sans-serif;fill:var(--ink)}.cc-s{font:11px system-ui,sans-serif;fill:var(--ink2)}</style>
+      <text class="cc-l" x="8" y="42">Atria</text><text class="cc-l" x="8" y="82">Ventricles</text><text class="cc-l" x="8" y="122">AV valves</text><text class="cc-l" x="8" y="162">Semilunar</text>
+      <rect x="110" y="28" width="80" height="22" rx="4" fill="var(--eosin)"/><text class="cc-s" x="114" y="43" fill="#fff" style="fill:#fff">systole</text>
+      <rect x="190" y="28" width="560" height="22" rx="4" fill="var(--eosin-soft)"/><text class="cc-s" x="470" y="43">diastole (relaxed, filling from veins)</text>
+      <rect x="110" y="68" width="80" height="22" rx="4" fill="var(--hema-soft)" stroke="var(--hema)" stroke-width="2"/><text class="cc-s" x="114" y="83">relaxed!</text>
+      <rect x="190" y="68" width="240" height="22" rx="4" fill="var(--hema)"/><text class="cc-s" x="250" y="83" style="fill:#fff">systole (contract, eject)</text>
+      <rect x="430" y="68" width="320" height="22" rx="4" fill="var(--hema-soft)"/><text class="cc-s" x="520" y="83">diastole (passive filling)</text>
+      <rect x="110" y="108" width="80" height="22" rx="4" fill="#9bd3a8"/><text class="cc-s" x="122" y="123">open</text>
+      <rect x="190" y="108" width="240" height="22" rx="4" fill="#e7b3b3"/><text class="cc-s" x="290" y="123">closed</text>
+      <rect x="430" y="108" width="320" height="22" rx="4" fill="#9bd3a8"/><text class="cc-s" x="580" y="123">open</text>
+      <rect x="110" y="148" width="100" height="22" rx="4" fill="#e7b3b3"/><text class="cc-s" x="122" y="163">closed</text>
+      <rect x="210" y="148" width="220" height="22" rx="4" fill="#9bd3a8"/><text class="cc-s" x="290" y="163">open</text>
+      <rect x="430" y="148" width="320" height="22" rx="4" fill="#e7b3b3"/><text class="cc-s" x="580" y="163">closed</text>
+      <line x1="190" y1="20" x2="190" y2="180" stroke="var(--ink)" stroke-dasharray="4 3"/><text class="cc-l" x="168" y="196">S1 “lub”</text><text class="cc-s" x="150" y="210">AV valves shut</text>
+      <line x1="430" y1="20" x2="430" y2="180" stroke="var(--ink)" stroke-dasharray="4 3"/><text class="cc-l" x="408" y="196">S2 “dub”</text><text class="cc-s" x="370" y="210">semilunar valves shut</text>
+      <text class="cc-s" x="110" y="226">0 s</text><text class="cc-s" x="720" y="226">0.8 s</text>
+    </svg>
+    <figcaption>One heartbeat at about 75 beats/min. The atrial squeeze happens while the ventricles are still relaxed.</figcaption>
+  </figure>
+  <div class="wwy">
+    <div><b class="lab">What</b>Atrial systole is the short atrial squeeze at the very end of ventricular filling.</div>
+    <div><b class="lab">How</b>The SA node fires, the atria contract, and the AV valves are open, so the atria push a final top-up of blood into ventricles that are still <b>relaxed</b>. Only after the AV node’s delay do the ventricles contract.</div>
+    <div><b class="lab">Why</b>Contraction is staggered so a chamber is relaxed exactly when it needs to receive blood. If ventricles contracted at the same moment, the atria would be pushing against a squeezing chamber.</div>
+  </div>
+  <div class="why"><b>Why option C is wrong, valve by valve:</b> the semilunar valves sit between the <b>ventricles and the arteries</b>, not between atria and ventricles. They are already closed during atrial systole, because a relaxed ventricle’s pressure is far below aortic pressure. They snap shut later, when the ventricles relax after ejecting and arterial blood starts to fall back (S2). Rule of thumb: <b>a valve opens when pressure behind it is higher and shuts when blood tries to flow backward through it</b>. Atrial pressure can only act on the AV valves.</div>
+
+  <h3>Before you attempt the remaining 45</h3>
+  <p>These are the concepts those questions lean on; each links to the section that teaches it.</p>
+  <div class="grid g2">
+    <div class="card"><h4><a href="#l-endo">Endocrine (10)</a></h4><ul><li>Peptide vs steroid: <b>where the receptor is</b> (surface vs inside) and why.</li><li>Which cell or zone makes which hormone: β/α cells; zona glomerulosa vs fasciculata.</li><li>Feedback direction: high T₃/T₄ shuts TRH and TSH; oxytocin in labour is the classic positive loop.</li><li>Calcium: low → PTH; high → calcitonin.</li></ul></div>
+    <div class="card"><h4><a href="#l-dig">Digestive (15)</a></h4><ul><li>Enzyme → substrate → site: salivary amylase (mouth), pepsin (stomach), lipase (small intestine).</li><li>Bile: made by the <b>liver</b>, stored by the <b>gallbladder</b>, emulsifies (not an enzyme).</li><li>HCl activates pepsinogen; pancreatic bicarbonate neutralizes chyme.</li><li>Surface area: villi and microvilli; main absorption site is the small intestine.</li></ul></div>
+    <div class="card"><h4><a href="#l-exc">Excretory (10)</a></h4><ul><li>Ammonia vs urea vs uric acid: toxicity and water cost.</li><li>Filtration (glomerulus) vs reabsorption (tubule → blood) vs secretion (blood → tubule).</li><li>Ascending limb: pumps salt, impermeable to water.</li><li>ADH = water in collecting duct (lack → diabetes insipidus); RAAS ↑ volume and BP; protein in urine = leaky glomerulus.</li></ul></div>
+    <div class="card"><h4><a href="#l-rep">Reproductive (10)</a></h4><ul><li>Uterine layers: endometrium (shed) vs myometrium (contracts in labour).</li><li>Corpus luteum → corpus albicans if no pregnancy.</li><li>Prolactin = milk <b>production</b>; oxytocin = milk <b>ejection</b>.</li><li>Fertilization in the ampulla; implantation in the endometrium; spermatogenesis order.</li></ul></div>
+  </div>
+  <div class="why"><b>A review loop that works:</b> (1) Load your PDF answers, then “Retry my 2 misses” until both feel automatic. (2) For each untouched system, read its section once, then do its sample questions with the reviewer filter on. (3) Close each session with “Retry missed only”, then a timed station run on the Quiz tab for the tissue IDs.</div>
+</section>
+
 
 <section id="l-map" aria-labelledby="h-map">
   <h2 id="h-map">The big picture</h2>
@@ -3096,6 +3169,18 @@ QUIZ.push(
  {s:'endo',t:'mc',q:'Sympathetic nerves triggering epinephrine release is which stimulus type?',o:['Humoral','Neural','Hormonal','Positive feedback'],a:1,e:'TSH → thyroid is hormonal; glucose → insulin is humoral.'},
  {s:'endo',t:'order',q:'Order the stress hormone chain.',items:['Hypothalamus releases CRH','Anterior pituitary releases ACTH','Adrenal cortex releases cortisol'],e:'Cortisol feeds back to cut CRH and ACTH.'}
 );
+
+// Paolo's highlighted answers in REVIEWER_3RD_EXAM-2.pdf (option index per sample question, in order).
+const MINE = { skin:[1,2,1,1,1,2,0,1,1,0], skel:[1,2,1,1,2,1,1,1,2,1], musc:[1,1,1,2,2,2,1,0,1,2], resp:[1,1,2,1,2,1,1,2], circ:[0,1,0,1,1,0,1,2], imm:[1,2,1,1,1,2,1,2,1,0,0,1,1,0,1], ns:[3,1,0,2,1,2,3,0,1,2] };
+{ const seen={}; QUIZ.forEach(q=>{ if(!q.rev) return; const k=q.s, i=seen[k]=(seen[k]??-1)+1; if(MINE[k] && MINE[k][i]!==undefined) q.mine=MINE[k][i]; }); }
+QUIZ.push(
+ {s:'circ',t:'order',q:'Order the vessels by size as blood leaves the heart and returns (targets your reviewer miss).',items:['Artery','Arteriole','Capillary','Venule','Vein'],e:'Big → smaller → smallest (exchange) → small → big. Arterioles come right after arteries; venules merge into veins.'},
+ {s:'circ',t:'mc',q:'Which vessels are the main “resistance” vessels that control flow into capillary beds?',o:['Elastic arteries','Arterioles','Venules','Veins'],a:1,e:'Their smooth muscle constricts or dilates to set how much blood enters each capillary bed.'},
+ {s:'circ',t:'mc',q:'During atrial systole, which valves are OPEN?',o:['AV valves only','Semilunar valves only','Both sets','Neither'],a:0,e:'AV valves open so atria can top up the relaxed ventricles; semilunar valves are closed because ventricular pressure is below arterial pressure.'},
+ {s:'circ',t:'mc',q:'The semilunar valves close because…',o:['The atria contract','Ventricles relax and blood in the arteries starts to flow back','Papillary muscles pull them shut','The SA node fires'],a:1,e:'Backflow snaps them shut at the start of ventricular diastole → S2 “dub”. Atrial contraction never reaches them.'},
+ {s:'circ',t:'order',q:'Order the cardiac cycle starting with atrial systole.',items:['Atrial systole: atria contract, ventricles relax and fill','AV valves close (S1 “lub”)','Ventricular systole: semilunar valves open, blood ejected','Semilunar valves close (S2 “dub”)','Complete diastole: AV valves open, passive filling'],e:'Atria and ventricles take turns; most filling is passive, atrial systole gives the final top-up.'},
+ {s:'circ',t:'mc',q:'Where does MOST ventricular filling happen at rest?',o:['During atrial systole','Passively during diastole, before the atria contract','During ventricular systole','Only during exercise'],a:1,e:'Atrial systole adds only the last portion (textbooks often cite roughly 20%), which is why people with atrial fibrillation can still circulate blood.'}
+);
 MIXUPS.push(
  ['Osteoblast','Osteoclast','Builds bone (secretes osteoid).','Breaks down bone (multinucleated).','Blasts build, clasts carve.'],
  ['Intramembranous','Endochondral','Directly from mesenchyme; flat skull bones.','Replaces a hyaline cartilage model; long bones.','Endo-CHONDRAL = cartilage first.'],
@@ -4768,6 +4853,16 @@ function quizInit(){
   [$('#q-secs'),$('#q-fmts')].forEach(g=>g.addEventListener('click', e=>{ const b=e.target.closest('button'); if(!b) return; b.setAttribute('aria-pressed', b.getAttribute('aria-pressed')!=='true'); qBuild(false); }));
   $('#q-shuffle').addEventListener('click', ()=>qBuild(true));
   $('#q-rev').addEventListener('click', e=>{ Q.rev = !Q.rev; e.currentTarget.setAttribute('aria-pressed', Q.rev); qBuild(false); });
+  // ---- my reviewer answers + drill buttons (Learn > My review) ----
+  const rvLoad = () => { let n=0; ALL.forEach(q=>{ if(q.mine!==undefined && !Q.ans[q.id]){ Q.ans[q.id]={ok:q.mine===q.a, v:q.mine}; n++; } }); store.set('ans',Q.ans); qMap(); qScore(); updateProgress(); qShow(); return n; };
+  const rs = $('#rv-load'); if (rs) rs.addEventListener('click', ()=>{ const n=rvLoad(); $('#rv-status').textContent = n ? `Loaded ${n} answers from your PDF. Open the Quiz tab: missed ones show in red, and “Retry missed only” brings back just those.` : 'Your PDF answers are already loaded.'; });
+  $$('[data-drill]').forEach(b=>b.addEventListener('click', ()=>{ const want=b.dataset.drill.split(','); if(b.dataset.missed) rvLoad();
+    $$('#q-secs button').forEach(c=>c.setAttribute('aria-pressed', want.includes(c.dataset.s)));
+    Q.rev = !!b.dataset.rev; $('#q-rev').setAttribute('aria-pressed', Q.rev);
+    Q.mode = b.dataset.missed ? 'missed' : 'practice'; $('#q-missed').setAttribute('aria-pressed', Q.mode==='missed');
+    if (!b.dataset.missed) { Q.list = filtered().filter(q=>!Q.ans[q.id]); } else { Q.mode='practice'; $('#q-missed').setAttribute('aria-pressed', false); Q.list = ALL.filter(q=>want.includes(q.s) && (!Q.rev||q.rev) && Q.ans[q.id] && !Q.ans[q.id].ok); Q.list.forEach(q=>delete Q.ans[q.id]); store.set('ans',Q.ans); }
+    Q.i=0; qShow(); qMap(); qScore();
+    location.hash = '#quiz'; }));
   $('#q-missed').addEventListener('click', e=>{ Q.mode = Q.mode==='missed' ? 'practice' : 'missed'; e.currentTarget.setAttribute('aria-pressed', Q.mode==='missed'); qBuild(false); });
   $('#q-reset').addEventListener('click', ()=>{ if(!confirmReset()) return; Q.ans={}; store.set('ans',{}); qBuild(false); updateProgress(); });
   $('#q-total').textContent = ALL.length;
